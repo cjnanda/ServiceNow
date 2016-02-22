@@ -163,5 +163,17 @@ Probe.createProbeResponse = function(eccGr){
 };
 Probe.getPayloadValue = function(eccGr){
     var payload = eccGr.getValue("payload");
+    if(payload == "<see_attachment/>"){
+        var att = new GlideRecord("sys_attachment");
+        att.addQuery("table_sys_id", eccGr.sys_id.toString());
+        att.addQuery("table_name", eccGr.getTableName());
+        att.query();
+        if(att.next()){
+            var attachmentApi = new GlideSysAttachment();
+            payload = attachmentApi.getContent(att);
+        }else{
+            payload = null;
+        }      
+    }
     return payload;
 };
