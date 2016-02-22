@@ -1,3 +1,13 @@
+/**
+Author: Chris Nanda
+Description:
+
+
+
+
+
+**/
+
 var AjaxHelper = Class.create();
 AjaxHelper.prototype = {
     initialize: function() {
