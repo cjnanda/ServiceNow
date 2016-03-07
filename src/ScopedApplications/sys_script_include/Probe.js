@@ -64,9 +64,10 @@ Probe.prototype = {
     },
      
     getPayload: function(){
-         
-        var payload = this._eccGr.getValue("payload");
-        return payload;
+        if (this._properties["payload"] == undefined || this._properties["payload"] == null) { 
+            this._properties["payload"] = this._eccGr.getValue("payload");
+        }
+        return this._properties["payload"];
     },
      
     setEccQueueRecord: function(val){
